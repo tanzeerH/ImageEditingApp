@@ -44,6 +44,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -157,15 +158,20 @@ public class PictureView extends ImageView implements
 			File root = new File(Environment.getExternalStorageDirectory()
 					+ File.separator + getResources().getString(R.string.app_name) + File.separator);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HHmmss") ;
+			Log.v("flag","2");
 			String fileName = sdf.format(new Date()) + CommonConstants.PICTURE_FILE_EXT;
 			root.mkdirs();
+			Log.v("flag","1");
 			File sdImageMainDirectory = new File(root, fileName);
 			outputPictireUri = Uri.fromFile(sdImageMainDirectory);
+			Log.v("flag","1");
 			fOut = new FileOutputStream(sdImageMainDirectory);
+			Log.v("flag","2");
 		} catch (Exception e) {
 			Toast.makeText(context,
 					"save_picture_failed",
 					Toast.LENGTH_SHORT).show();
+			e.printStackTrace();
 		}
 
 		try {
